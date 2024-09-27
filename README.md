@@ -25,7 +25,7 @@ This workflow will show how to run each step to build a classifier for your own 
 
 * CanID uses a set of 17975 protein coding genes from Gencode v31
 * Format the RNAseq Count Data to a tab-delimited gene x sample matrix
-* Filter formatted matrix to uses the 19795 progein coding genes included in CanID_geneList.txt
+* Filter the formatted matrix to use the 17975 genes included in input_files/CanID_geneList.txt
 
 ```
 sample1     sample2     sample3 ... sampleN
