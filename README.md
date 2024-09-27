@@ -3,9 +3,11 @@ A pan-cancer classifer for pediatric solid tumors and hematologic malignancy sam
 
 ## Description
 
-Cancer identification (CanID) is designed a a lightweight classsification scheme without the need for GPU acceleration.  It can be run as a stand-alone classifer or integrated with classifiers using other data modalities to further imporve subtyping accuracy.  As addtional tumor subtypes become available, it can be easily extended.
+Cancer identification (CanID) is designed a a lightweight classsification scheme without the need for GPU acceleration.  It can be run as a stand-alone classifer or integrated with classifiers using other data modalities to further improve subtyping accuracy.  As addtional tumor subtypes become available, it can be easily extended.
 
-CanID utilizes RNAseq feature count data from protein coding genes.  The training data feature count matrix was used as the raw input that is processed sequentially through multiple steps: 1) quantile normalization, 2) batch correction using frozen surrogate variable analysis (fSVA), and 3) Principal Component Analysis (PCA) feature reduction.  The information dense PCA features are used to train a stacked ensemble model.  The output includes the predicted class along with a confidence score for the prediction.    
+CanID utilizes RNAseq feature count data from protein coding genes.  The training data RNAseq counts matrix is processed sequentially through multiple steps: 1) quantile normalization, 2) batch correction using frozen surrogate variable analysis (fSVA), and 3) Principal Component Analysis (PCA) feature reduction.  The information dense PCA features inputs to train a stacked ensemble model.  CanID's output includes the predicted class along with a confidence score for the prediction.
+
+This workflow will show how to run each step to build a classifier for your own data
 
 ## Getting Started
 
@@ -16,16 +18,37 @@ CanID utilizes RNAseq feature count data from protein coding genes.  The trainin
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* clone this github respository onto your computer
 
-### Executing program
+### 1) RNAseq Count Data format
 
-* How to run the program
-* Step-by-step bullets
+* CanID uses a set of 17975 protein coding genes from Gencode v31
+* Format the RNAseq Count Data to a tab-delimited gene x sample matrix
+* Filter formatted matrix to uses the 19795 progein coding genes included in CanID_geneList.txt
+
 ```
-code blocks for commands
+sample1     sample2     sample3 ... sampleN
+A1BG       49         107          29          59
+ALCF        3           7           8           8
+A2M     26860        6917       15878        3375
+...                                           ...
+ZZEF1    3508        8394        5132        2387
 ```
+
+### 2) Prepare MetaData
+
+* Create a tab delimited text file with the following columns: sample_id, class_label, group
+* Recommend 70% training and 30% testing sample split
+```
+sample_id     class_label     group
+sample1       NBL             train
+sample2       OS              train
+sample3       NBL             test
+...                           ...
+sampleN       OS              test
+```
+
+
 
 ## Help
 
