@@ -20,6 +20,7 @@ This workflow will show how to run each step to build a classifier for your own 
 
 * clone this github respository onto your computer
 
+## Data Preparation
 ### 1) RNAseq Count Data format
 
 * CanID uses a set of 17975 protein coding genes from Gencode v31
@@ -35,7 +36,7 @@ A2M     26860        6917       15878        3375
 ZZEF1    3508        8394        5132        2387
 ```
 
-### 2) Prepare MetaData
+### 2) MetaData format
 
 * Create a tab delimited text file with the following columns: sample_id, class_label, group
 * Recommend 70% training and 30% testing sample split
