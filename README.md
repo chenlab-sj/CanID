@@ -24,7 +24,7 @@ This workflow will show how to run each step to build a classifier for your own 
 ### 1) RNAseq Count Data format
 
 * CanID uses a set of 17975 protein coding genes from Gencode v31
-* Format the RNAseq Count Data to a tab-delimited gene x sample matrix
+* Format the RNAseq Count Data to a tab-delimited gene by sample matrix
 * Filter the formatted matrix to use the 17975 genes included in input_files/CanID_geneList.txt
 
 ```
@@ -48,6 +48,16 @@ sample3       NBL             test
 ...                           ...
 sampleN       OS              test
 ```
+
+### 3) Training ID files
+
+* Create list of training ID's for each RNA-Seq Count Matrix used
+
+## Model Generation
+### 1) Quantile Normalization
+
+* list the formatted RNA-seq count files (one per line) in a .txt file, norm_list.txt
+* list the training id files (one per line) for each file in the norm_list.txt
 
 
 
