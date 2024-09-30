@@ -58,7 +58,10 @@ sampleN       OS              test
 
 * list the formatted RNA-seq count files (one per line) in a .txt file, norm_list.txt
 * list the training id files (one per line) for each file in the norm_list.txt
-
+* Execute step1a_qn_norm_v3.py script
+```
+python step1a_qn_norm_v3.py norm_list.txt id_list.txt qn_norm_matrix_samples.txt
+```
 
 
 ## Help
