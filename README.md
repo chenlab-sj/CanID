@@ -95,11 +95,17 @@ python step2a_prep_train_fSVA.py qn_list.txt trainID_list.txt master_labels.txt 
 python step2a_prep_test_fSVA.py quantile_normalized_count_matrix.txt testIDs.txt test_fSVA_g17975
 ```
 ### 2b) Generate SVA Model from Training Data
+* The output of this script is an RData object of the leared SVA model from the training data 
 ```
-R CMD BATCH --no-save --no-restore '--args trainPhenoFile="train_fSVA_g17975_grain_pheno.txt" trainDataFile="train_fSVA_g17975_train_expression.txt" outprefix="train_fSVA_g17975"' step2b_compute_train_sva.R train_fSVA_g17975.out
+R CMD BATCH --no-save --no-restore '--args trainPhenoFile="train_fSVA_g17975_train_pheno.txt" trainDataFile="train_fSVA_g17975_train_expression.txt" outprefix="train_fSVA_g17975"' step2b_compute_train_sva.R train_fSVA_g17975.out
 ```
 
 ### 2c) Transform Data using fSVA
+* The output of this script is the batch corrected training matrix and
+* The batch corrected test matrix
+```
+R CMD BATCH --no-save --no-restore '--args trainPhenoFile="train_fSVA_g17975_train_pheno.txt" trainDataFile="train_fSVA_g17975_train_expression.txt" model_file="train_fSVA_g17975_sva_model.Rdata, testDataFile="test_fSVA_g17975_test_expression.txt outprefix="test_fSVA_g17975"' step2c_run_fsva.R test_fSVA_g17975.out
+```
 
 ## Help
 
