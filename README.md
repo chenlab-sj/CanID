@@ -53,7 +53,16 @@ sampleN       OS              test
 
 * Create list of training ID's for each RNA-Seq Count Matrix used
 
-## Model Generation
+### 4) Class Code file
+* Create tab delimited file of tumor_class and tumor_code where tumor_class is the specific cancer and tumor_code is an integer value
+```
+tumor_class     tumor_code
+ACC             0
+ARMS            1
+...             ...
+``` 
+
+## Model Generation: Quantile Normalization
 ### 1a) Quantile Normalization Train
 
 * list the formatted RNA-seq count files (one per line), norm_list.txt
@@ -65,13 +74,27 @@ python step1a_qn_norm_v3.py norm_list.txt id_list.txt qn_norm_matrix_samples.txt
 
 ### 1b) Quantile Normalization Transform
 
-* provide path to formatted RNA-seq count file
-* provide path to qn_norm_matrix_samples.txt
+* get path to formatted RNA-seq count file
+* get path to qn_norm_matrix_samples.txt
 * provide output file name, i.e. dataset_QN_NormMatrix_17975.txt
 ```
 python step1b_apply_qn.py RNAseq_count_matrix.txt qn_norm_matrix_samples.txt dataset_QN_NormMatrix_17975.txt
 ```
-
+## Model Generation: Batch Correction
+### 2a) Prep Inputs
+#### Train)
+* create list file of quantile normalized count matrices for training data
+* create list file of training samples for each quantile normalized count matrix
+```
+python step2a_prep_train_fSVA.py qn_list.txt trainID_list.txt master_labels.txt class_code.txt train_fSVA_g17975
+```
+#### Test)
+* create list of test sample IDs
+```
+python step2a_prep_test_fSVA.py quantile_normalized_count_matrix.txt testIDs.txt test_fSVA_g17975
+```
+### 2b) Generate SVA Model from Training Data
+### 2c) Transform Data using fSVA
 
 ## Help
 
