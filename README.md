@@ -54,13 +54,22 @@ sampleN       OS              test
 * Create list of training ID's for each RNA-Seq Count Matrix used
 
 ## Model Generation
-### 1) Quantile Normalization
+### 1a) Quantile Normalization Train
 
-* list the formatted RNA-seq count files (one per line) in a .txt file, norm_list.txt
-* list the training id files (one per line) for each file in the norm_list.txt
-* Execute step1a_qn_norm_v3.py script
+* list the formatted RNA-seq count files (one per line), norm_list.txt
+* list the training id files (one per line) for each file from norm_list.txt
+* Execute step1a_qn_norm_v3.py
 ```
 python step1a_qn_norm_v3.py norm_list.txt id_list.txt qn_norm_matrix_samples.txt
+``` 
+
+### 1b) Quantile Normalization Transform
+
+* provide path to formatted RNA-seq count file
+* provide path to qn_norm_matrix_samples.txt
+* provide output file name, i.e. dataset_QN_NormMatrix_17975.txt
+```
+python step1b_apply_qn.py RNAseq_count_matrix.txt qn_norm_matrix_samples.txt dataset_QN_NormMatrix_17975.txt
 ```
 
 
