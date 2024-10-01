@@ -83,8 +83,9 @@ python step1b_apply_qn.py RNAseq_count_matrix.txt qn_norm_matrix_samples.txt dat
 ## Model Generation: Batch Correction
 ### 2a) Prep Inputs
 #### Train)
-* create list file of quantile normalized count matrices for training data
-* create list file of training samples for each quantile normalized count matrix
+* Create list file of quantile normalized count matrices for training data
+* Create list file of training samples for each quantile normalized count matrix
+* The output of this script is a formatted phenotype file and count matrix for input into SVA algorihtm
 ```
 python step2a_prep_train_fSVA.py qn_list.txt trainID_list.txt master_labels.txt class_code.txt train_fSVA_g17975
 ```
@@ -94,6 +95,10 @@ python step2a_prep_train_fSVA.py qn_list.txt trainID_list.txt master_labels.txt 
 python step2a_prep_test_fSVA.py quantile_normalized_count_matrix.txt testIDs.txt test_fSVA_g17975
 ```
 ### 2b) Generate SVA Model from Training Data
+```
+R CMD BATCH --no-save --no-restore '--args trainPhenoFile="train_fSVA_g17975_grain_pheno.txt" trainDataFile="train_fSVA_g17975_train_expression.txt" outprefix="train_fSVA_g17975"' step2b_compute_train_sva.R train_fSVA_g17975.out
+```
+
 ### 2c) Transform Data using fSVA
 
 ## Help
