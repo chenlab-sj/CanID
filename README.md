@@ -132,8 +132,8 @@ python step4b_stacked_model_predict.py pca_transformed_test_matrix.txt trained_m
 ```
 ## Authors
 
-Daniel Putnam    Daniel.Putnam@stjude.org
-Xiang Chen       Xiang.Chen@stjude.org
+* Daniel Putnam    Daniel.Putnam@stjude.org
+* Xiang Chen       Xiang.Chen@stjude.org
 
 ## Version History
 
