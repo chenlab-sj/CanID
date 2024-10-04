@@ -109,7 +109,7 @@ R CMD BATCH --no-save --no-restore '--args trainPhenoFile="train_fSVA_g17975_tra
 
 ## Model Generation: Principal Component Feature Reduction
 ### 3a) PCA Reduction Fit
-Ouput of this step:
+Output of this step:
 * PCA model file (.pickle) used to transform unseen test data to the same feature space as the training data
 * Transformed training data (.txt) - sample_name by PCA_Features
 ```
@@ -119,7 +119,7 @@ python step3a_pca_train.py train_fSVA_g17975.txt 0.70 train_pca70_g17975
 ### 3b) PCA Reduction Transform
 ```
 python step3b_pca_transform.py test_matrix_step2c.txt pca_model.pickle output_prefix
-python step3a_pca_train.py train_fSVA_g17975.txt 0.70 test_pca70_g17975
+python step3b_pca_transform.py test_fSVA_g17975.txt train_pca70_g17975.pickle test_pca70_g17975
 ```
 
 
