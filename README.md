@@ -62,7 +62,7 @@ ARMS            1
 ...             ...
 ``` 
 
-## Model Generation: Quantile Normalization
+## Model Generation: Quantile Normalization Model
 ### 1a) Quantile Normalization Train
 
 * list the formatted RNA-seq count files (one per line), norm_list.txt
@@ -80,7 +80,7 @@ python step1a_qn_norm_v3.py norm_list.txt id_list.txt qn_norm_matrix_samples.txt
 ```
 python step1b_apply_qn.py RNAseq_count_matrix.txt qn_norm_matrix_samples.txt dataset_QN_NormMatrix_17975.txt
 ```
-## Model Generation: Batch Correction
+## Model Generation: Frozen Surrogate Variable Batch Correction Model
 ### 2a) Prep Inputs
 #### Train)
 * Create list file of quantile normalized count matrices for training data
@@ -107,7 +107,7 @@ R CMD BATCH --no-save --no-restore '--args trainPhenoFile="train_fSVA_g17975_tra
 R CMD BATCH --no-save --no-restore '--args trainPhenoFile="train_fSVA_g17975_train_pheno.txt" trainDataFile="train_fSVA_g17975_train_expression.txt" model_file="train_fSVA_g17975_sva_model.Rdata, testDataFile="test_fSVA_g17975_test_expression.txt outprefix="test_fSVA_g17975"' step2c_run_fsva.R test_fSVA_g17975.out
 ```
 
-## Model Generation: Principal Component Feature Reduction
+## Model Generation: Principal Component Feature Reduction Model
 ### 3a) PCA Reduction Fit
 Output of this step:
 * PCA model file (.pickle) used to transform unseen test data to the same feature space as the training data
@@ -121,7 +121,11 @@ python step3a_pca_train.py train_fSVA_g17975.txt 0.70 train_pca70_g17975
 python step3b_pca_transform.py test_matrix_step2c.txt pca_model.pickle output_prefix
 python step3b_pca_transform.py test_fSVA_g17975.txt train_pca70_g17975.pickle test_pca70_g17975
 ```
-
+## Model Generation: Stacked Ensemble Classification Model
+### 4a) Model Fit
+```
+python step4a_stacked_model_train.py pca_transformed_train_matrix.txt metadata.txt id_by_gene stack class_code.txt trained_model
+```
 
 
 ## Help
