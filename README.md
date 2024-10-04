@@ -124,41 +124,38 @@ python step3b_pca_transform.py test_fSVA_g17975.txt train_pca70_g17975.pickle te
 ## Model Generation: Stacked Ensemble Classification Model
 ### 4a) Model Fit
 ```
-python step4a_stacked_model_train.py pca_transformed_train_matrix.txt metadata.txt id_by_gene stack class_code.txt trained_model
+python step4a_stacked_model_train.py pca_transformed_train_matrix.txt metadata.txt id_by_gene stack class_code.txt output_prefix
 ```
-
-
-## Help
-
-Any advise for common problems or issues.
+### 4a) Model Predict
 ```
-command to run if program contains helper info
+python step4b_stacked_model_predict.py pca_transformed_test_matrix.txt trained_model.sav scaling.sav class_code.txt output_prefix
 ```
-
 ## Authors
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+Daniel Putnam    Daniel.Putnam@stjude.org
+Xiang Chen       Xiang.Chen@stjude.org
 
 ## Version History
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
 * 0.1
     * Initial Release
 
 ## License
+Copyright 2024 St. Jude Children's Research Hospital
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+
