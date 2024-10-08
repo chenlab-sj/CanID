@@ -1,1 +1,3 @@
-CanID_geneList.txt     List of 17975 genes used in the CanID pipeline
+CanID_geneList.txt           List of 17975 genes used in the CanID pipeline
+qn_norm_matrix_solid.txt     Ranked mean expression values used for quantile normalization from solid-tumor training data
+qn_norm_matrix_heme.txt      Ranked mean expression values used for quantile normalization from hematologic-malignancy training data 
