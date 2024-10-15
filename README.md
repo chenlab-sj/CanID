@@ -140,9 +140,9 @@ python step3b_pca_transform.py test_fSVA_g17975.txt train_pca70_g17975.pickle te
 ```
 python step4a_stacked_model_train.py pca_transformed_train_matrix.txt metadata.txt id_by_gene stack class_code.txt output_prefix
 ```
-### 4a) Model Predict
+### 4b) Model Predict
 ```
-python step4b_stacked_model_predict.py pca_transformed_test_matrix.txt trained_model.sav scaling.sav class_code.txt output_prefix
+python step4b_stacked_model_predict.py pca_transformed_test_matrix.txt id_by_gene trained_model.sav scaling.sav class_code.txt output_prefix
 ```
 ## Authors
 
