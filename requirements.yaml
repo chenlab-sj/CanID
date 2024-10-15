@@ -10,7 +10,7 @@ dependencies:
     - bioconductor-sva
     - bioconductor-limma
     - python=3.10.4
-    - pandas
+    - pandas=2.0.1
     - numpy=1.22.3
     - qnorm=0.8.1
     - scikit-learn=1.1.1
