@@ -29,6 +29,8 @@ This workflow will show how to run each step to build a classifier for your own 
 ```
    sh unpack_models.sh
 ```
+* Warning: The python models were generated using scikit-learn and are stored as pickle files
+* The tutorial below will show how to build your own models
 
 ## Data Preparation
 ### 1) RNAseq Count Data format
