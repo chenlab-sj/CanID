@@ -11,14 +11,24 @@ This workflow will show how to run each step to build a classifier for your own 
 
 ## Getting Started
 
-### Dependencies
-
-* python: v3.10.4,  pandas: v2.0.1, numpy: v1.22.3, qnorm: v0.8.1, pickle: v4.0, sklearn: v1.1.1, scipy: v1.8.0, matplotlib: v3.7.1
-* R: v4.3.1, packages: sva, limma
-
 ### Installing
 
-* clone this github respository onto your computer
+* Clone this github respository onto your computer
+```
+  git clone https://github.com/chenlab-sj/CanID.git
+```
+* Navigate into the CanID folder
+* Build and activate the Conda environment
+```
+  conda env create -n CanID --file requirements.yaml
+  conda activate CanID
+```
+* CanID primarily uses Python3, but also includes an application in R
+* Make sure you run the python and R applications from the CanID conda environment
+* Unpack the trained CanID models
+```
+   python unpack_models.sh
+```
 
 ## Data Preparation
 ### 1) RNAseq Count Data format
