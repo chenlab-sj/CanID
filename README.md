@@ -41,12 +41,12 @@ Seperate classifiers were built for solid tumor and hematalogic malignacy diseas
 * Filter the formatted matrix to use the 17975 genes included in input_files/CanID_geneList.txt
 
 ```
-sample1     sample2     sample3 ... sampleN
-A1BG       49         107          29          59
-ALCF        3           7           8           8
-A2M     26860        6917       15878        3375
-...                                           ...
-ZZEF1    3508        8394        5132        2387
+        sample1     sample2     sample3 ... sampleN
+A1BG         49         107          29          59
+ALCF          3           7           8           8
+A2M       26860        6917       15878        3375
+...                                             ...
+ZZEF1      3508        8394        5132        2387
 ```
 
 ### 2) MetaData format
