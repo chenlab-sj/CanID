@@ -1,1 +1,10 @@
-Summary of Models
+Summary of Models built from training data
+solid_train_s456_g17975_sva_model.Rdata         Solid tumor fSVA batch corrected model 
+solid_train_s456_g17975_pca70_model.pickle      Solid tumor PCA feature model describing 70% of the variance
+solid_train_s456_g17975_pca70_CanID_scaler.sav  Solid tumor CanID feature scaler model
+solid_train_s456_g17975_pca70_CanID_model.sav   Solid tumor CanID ensemble model
+
+heme_train_s1288_g17975_sva_model.Rdata         Hematologic malignancy fSVA batch corrected model
+heme_train_s1288_g17975_pca85_model.pickle      Hematologic malignancy PCA feature model describing 85% of the variance
+heme_train_s1288_g17975_pca85_CanID_scaler.sav  Hematologic malignancy CanID feature scaler model
+heme_train_s1288_g17975_pca85_CanID_model.sav   Hematologic malignancy CanID ensemble model
