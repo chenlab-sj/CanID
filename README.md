@@ -7,7 +7,8 @@ Cancer identification (CanID) is designed a a lightweight classsification scheme
 
 CanID utilizes RNAseq feature count data from protein coding genes.  The training data RNAseq counts matrix is processed sequentially through multiple steps: 1) quantile normalization, 2) batch correction using frozen surrogate variable analysis (fSVA), and 3) Principal Component Analysis (PCA) feature reduction.  The information dense PCA features inputs to train a stacked ensemble model.  CanID's output includes the predicted class along with a confidence score for the prediction.
 
-This workflow will show how to run each step to build a classifier for your own data
+This workflow will show how to run each step to build a classifier for your own data.
+Seperate classifiers were built for solid tumor and hematalogic malignacy disease types.
 
 ## Getting Started
 
