@@ -41,25 +41,26 @@ Seperate classifiers were built for solid tumor and hematalogic malignacy diseas
 * Filter the formatted matrix to use the 17975 genes included in input_files/CanID_geneList.txt
 
 ```
-        sample1     sample2     sample3 ... sampleN
+sample1     sample2     sample3 ... sampleN
 A1BG         49         107          29          59
 ALCF          3           7           8           8
 A2M       26860        6917       15878        3375
 ...                                             ...
 ZZEF1      3508        8394        5132        2387
 ```
+* Note the header has the first sample id above the gene name
 
 ### 2) MetaData format
 
 * Create a tab delimited text file with the following columns: sample_id, class_label, group
 * Recommend 70% training and 30% testing sample split
 ```
-sample_id     class_label     group
-sample1       NBL             train
-sample2       OS              train
-sample3       NBL             test
+sample_id     fsample_id       cohort     class_label   group
+sample1       fSVA_sample1     SJCloud    NBL           train
+sample2       fSVA_sample2     SJCloud     OS           train
+sample3       fSVA_sample3     SJCloud    NBL            test
 ...                           ...
-sampleN       OS              test
+sampleN       fSVA_sampleN     SJCloud     OS            test
 ```
 
 ### 3) Training ID files
