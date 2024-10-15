@@ -11,7 +11,7 @@ This workflow will show how to run each step to build a classifier for your own 
 
 ## Getting Started
 
-### Installing
+### Installing on Linux or Mac
 
 * Clone this github respository onto your computer
 ```
@@ -27,7 +27,7 @@ This workflow will show how to run each step to build a classifier for your own 
 * Make sure you run the python and R applications from the CanID conda environment
 * Unpack the trained CanID models
 ```
-   python unpack_models.sh
+   sh unpack_models.sh
 ```
 
 ## Data Preparation
