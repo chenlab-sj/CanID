@@ -30,7 +30,7 @@ Seperate classifiers were built for solid tumor and hematalogic malignacy diseas
 ```
    sh unpack_models.sh
 ```
-* Warning: The python models were generated using scikit-learn and are stored as pickle files
+* Warning: The python models are stored as pickle files
 * The tutorial below will show how to build your own models
 
 ## Data Preparation
