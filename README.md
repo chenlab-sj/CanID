@@ -33,8 +33,7 @@ Seperate classifiers were built for solid tumor and hematalogic malignacy diseas
 * Warning: The python models are stored as pickle files
 * The tutorial below will show how to build your own models
 
-## Data Preparation
-### 1) RNAseq Count Data format
+## RNAseq Count Data Format
 
 * CanID uses a set of 17975 protein coding genes from Gencode v31
 * Format the RNAseq Count Data to a tab-delimited gene by sample matrix
@@ -50,7 +49,18 @@ ZZEF1      3508        8394        5132        2387
 ```
 * Note the header has the first sample id above the gene name
 
-### 2) MetaData format
+## Run Pretrained Model
+The Input RNASeq Matrix must be transformed through a series of data transformations using pretraining models before being passed to the Ensemble Classifier
+```
+# Quantile Normalization
+python step1b_apply_qn.py [raw_counts_file][qn_model][outputfile]
+python step1b_apply_qn.py RNAseq_count_matrix.txt input_files/qn_norm_matrix_solid.txt dataset_QN_NormMatrix_17975.txt
+```
+
+
+## Train Own Model
+### File Preparation
+#### 1) MetaData format
 
 * Create a tab delimited text file with the following columns: sample_id, class_label, group
 * Recommend 70% training and 30% testing sample split
@@ -63,11 +73,11 @@ sample3       fSVA_sample3     SJCloud    NBL            test
 sampleN       fSVA_sampleN     SJCloud     OS            test
 ```
 
-### 3) Training ID files
+#### 2) Training ID files
 
 * Create list of training ID's for each RNA-Seq Count Matrix used
 
-### 4) Class Code file
+#### 3) Class Code file
 * Create tab delimited file of tumor_class and tumor_code where tumor_class is the specific cancer and tumor_code is an integer value
 ```
 tumor_class     tumor_code
