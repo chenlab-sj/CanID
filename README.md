@@ -33,6 +33,9 @@ Seperate classifiers were built for solid tumor and hematalogic malignacy diseas
 * Warning: The python models are stored as pickle files
 * The tutorial below will show how to build your own models
 
+* CanID is setup to run using a nextflow pipeline
+* Make sure to have nextflow version: 23.04.1 or greater
+
 ## RNAseq Count Data Format
 
 * CanID uses a set of 17975 protein coding genes from Gencode v31
