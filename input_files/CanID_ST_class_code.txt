@@ -1,0 +1,14 @@
+tumor_class	tumor_code
+ACC	0
+ARMS	1
+ERMS	2
+EWS	3
+HB	4
+MEL	5
+NBL	6
+OS	7
+RBL	8
+SYNS	9
+THPA	10
+WT	11
+RT	12
