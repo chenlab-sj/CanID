@@ -43,120 +43,33 @@ Seperate classifiers were built for solid tumor and hematalogic malignacy diseas
 * Filter the formatted matrix to use the 17975 genes included in input_files/CanID_geneList.txt
 
 ```
-sample1     sample2     sample3 ... sampleN
+        sample1     sample2     sample3 ... sampleN
 A1BG         49         107          29          59
 ALCF          3           7           8           8
 A2M       26860        6917       15878        3375
 ...                                             ...
 ZZEF1      3508        8394        5132        2387
 ```
-* Note the header has the first sample id above the gene name
 
-## Run Pretrained Model
+## Train Custom model
 The Input RNASeq Matrix must be transformed through a series of data transformations using pretraining models before being passed to the Ensemble Classifier
 ```
-# Quantile Normalization
-python step1b_apply_qn.py [raw_counts_file][qn_model][outputfile]
-python step1b_apply_qn.py RNAseq_count_matrix.txt input_files/qn_norm_matrix_solid.txt dataset_QN_NormMatrix_17975.txt
+# Train Model (from the nextflow folder)
+set -e
+nextflow train_model.nf --inputfile ['raw_counts_file'] --prefix ['file_prefix'] --basedir ['path_to_repository'] --classcode ['class_code_file'] --labels ['label_file'] --variance ['variance_explained'] -resume
 ```
 
-
-## Train Own Model
-### File Preparation
-#### 1) MetaData format
-
-* Create a tab delimited text file with the following columns: sample_id, class_label, group
-* Recommend 70% training and 30% testing sample split
+## Make a Prediction using SJ Model
 ```
-sample_id     fsample_id       cohort     class_label   group
-sample1       fSVA_sample1     SJCloud    NBL           train
-sample2       fSVA_sample2     SJCloud     OS           train
-sample3       fSVA_sample3     SJCloud    NBL            test
-...                           ...
-sampleN       fSVA_sampleN     SJCloud     OS            test
+set -e
+nextflow make_prediction.nf --inputfile ['raw_counts_file'] --fsva_method ['exact' or 'fast'] --prefix ['file_prefix'] --basedir ['path_to_repository'] --modeltype ['ST' or 'HM'] -resume
+```
+## Make a Prediction using Custom Model
+```
+set -e
+nextflow make_prediction.nf --inputfile ['raw_counts_file'] --fsva_method ['exact' or 'fast'] --prefix ['file_prefix'] --basedir ['path_to_repository'] --modeltype ['CUSTOM'] --genelist ['genelist'] --qnmodel ['qn_model'] --bnexpression ['bn_expression_file'] --bnpheno ['bn_pheno_file'] --bnmodel ['bn_model_file'] --pcamodel ['pca_model_file'] --canidscaler ['canid_scalar_file'] -- canidmodel ['canid_model_file'] classcode ['class_code_file'] -resume
 ```
 
-#### 2) Training ID files
-
-* Create list of training ID's for each RNA-Seq Count Matrix used
-
-#### 3) Class Code file
-* Create tab delimited file of tumor_class and tumor_code where tumor_class is the specific cancer and tumor_code is an integer value
-```
-tumor_class     tumor_code
-ACC             0
-ARMS            1
-...             ...
-``` 
-
-## Model Generation: Quantile Normalization Model
-### 1a) Quantile Normalization Train
-
-* list the formatted RNA-seq count files (one per line), norm_list.txt
-* list the training id files (one per line) for each file from norm_list.txt
-* Execute step1a_qn_norm_v3.py
-```
-python step1a_qn_norm_v3.py norm_list.txt id_list.txt qn_norm_matrix_samples.txt
-``` 
-
-### 1b) Quantile Normalization Transform
-
-* get path to formatted RNA-seq count file
-* get path to qn_norm_matrix_samples.txt
-* provide output file name, i.e. dataset_QN_NormMatrix_17975.txt
-```
-python step1b_apply_qn.py RNAseq_count_matrix.txt qn_norm_matrix_samples.txt dataset_QN_NormMatrix_17975.txt
-```
-## Model Generation: Frozen Surrogate Variable Batch Correction Model
-### 2a) Prep Inputs
-#### Train)
-* Create list file of quantile normalized count matrices for training data
-* Create list file of training samples for each quantile normalized count matrix
-* The output of this script is a formatted phenotype file and count matrix for input into SVA algorihtm
-```
-python step2a_prep_train_fSVA.py qn_list.txt trainID_list.txt master_labels.txt class_code.txt train_fSVA_g17975
-```
-#### Test)
-* create list of test sample IDs
-```
-python step2a_prep_test_fSVA.py quantile_normalized_count_matrix.txt testIDs.txt test_fSVA_g17975
-```
-### 2b) Generate SVA Model from Training Data
-* The output of this script is an RData object of the leared SVA model from the training data 
-```
-R CMD BATCH --no-save --no-restore '--args trainPhenoFile="train_fSVA_g17975_train_pheno.txt" trainDataFile="train_fSVA_g17975_train_expression.txt" outprefix="train_fSVA_g17975"' step2b_compute_train_sva.R train_fSVA_g17975.out
-```
-
-### 2c) Transform Data using fSVA
-* The output of this script is the batch corrected training matrix and
-* The batch corrected test matrix
-```
-R CMD BATCH --no-save --no-restore '--args trainPhenoFile="train_fSVA_g17975_train_pheno.txt" trainDataFile="train_fSVA_g17975_train_expression.txt" model_file="train_fSVA_g17975_sva_model.Rdata, testDataFile="test_fSVA_g17975_test_expression.txt outprefix="test_fSVA_g17975"' step2c_run_fsva.R test_fSVA_g17975.out
-```
-
-## Model Generation: Principal Component Feature Reduction Model
-### 3a) PCA Reduction Fit
-Output of this step:
-* PCA model file (.pickle) used to transform unseen test data to the same feature space as the training data
-* Transformed training data (.txt) - sample_name by PCA_Features
-```
-python step3a_pca_train.py output_step2c.txt fraction_variance_explained output_prefix
-python step3a_pca_train.py train_fSVA_g17975.txt 0.70 train_pca70_g17975
-```
-### 3b) PCA Reduction Transform
-```
-python step3b_pca_transform.py test_matrix_step2c.txt pca_model.pickle output_prefix
-python step3b_pca_transform.py test_fSVA_g17975.txt train_pca70_g17975.pickle test_pca70_g17975
-```
-## Model Generation: Stacked Ensemble Classification Model
-### 4a) Model Fit
-```
-python step4a_stacked_model_train.py pca_transformed_train_matrix.txt metadata.txt id_by_gene stack class_code.txt output_prefix
-```
-### 4b) Model Predict
-```
-python step4b_stacked_model_predict.py pca_transformed_test_matrix.txt id_by_gene trained_model.sav scaling.sav class_code.txt output_prefix
-```
 ## Authors
 
 * Daniel Putnam    Daniel.Putnam@stjude.org
