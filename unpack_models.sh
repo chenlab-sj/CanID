@@ -27,4 +27,4 @@ rmdir ./intermediate_files/ST_store/build
 # unpack the HM pca model
 ##########################################
 
-cat ./models/HM_pca85_part_{00..04} > ./models/HM_train_pca85.pickle
+cat ./models/HM_store/HM_pca85_part_{00..04} > ./models/HM_train_pca85.pickle
