@@ -28,7 +28,7 @@ Seperate classifiers were built for solid tumor and hematalogic malignacy diseas
 * Make sure you run the python and R applications from the CanID conda environment
 * Unpack the trained CanID models
 ```
-   sh unpack_models.sh
+   sh unpack_files.sh
 ```
 * Warning: The python models are stored as pickle files
 * The tutorial below will show how to build your own models
