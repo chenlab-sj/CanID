@@ -20,8 +20,9 @@ Seperate classifiers were built for solid tumor and hematalogic malignacy diseas
 ```
 * Navigate into the CanID folder
 * Build and activate the Conda environment
+* We used Mamba v1.5.8
 ```
-  conda env create -n CanID --file requirements.yaml
+  mamba env create -n CanID --file requirements.yaml
   conda activate CanID
 ```
 * CanID primarily uses Python3, but also includes an application in R
