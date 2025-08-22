@@ -39,9 +39,9 @@ Seperate classifiers were built for solid tumor and hematalogic malignacy diseas
 
 ## RNAseq Count Data Format
 
-* CanID uses a set of 17975 protein coding genes from Gencode v31
+* CanID uses a set of 17061 protein coding genes from Gencode v31
 * Format the RNAseq Count Data to a tab-delimited gene by sample matrix
-* Filter the formatted matrix to use the 17975 genes included in input_files/CanID_geneList.txt
+* Filter the formatted matrix to use the 17061 genes included in input_files/CanID_geneList.txt
 
 ```
         sample1     sample2     sample3 ... sampleN
