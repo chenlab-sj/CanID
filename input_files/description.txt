@@ -1,3 +1,5 @@
-CanID_geneList.txt           List of 17061 genes used in the CanID pipeline
-CanID_HM_class_code.txt      Integer Assignments for  Hematologic Malignancy class types 
-CanID_ST_class_code.txt      Integer Assignemnts for Solid Tumor class types
+CanID_geneList.txt             List of 17061 genes used in the CanID pipeline
+CanID_HM_class_code.txt        Integer assignments for  hematologic malignancy class types 
+CanID_ST_class_code.txt        Integer assignemnts for solid tumor class types
+ST_thresholds_m456_g17061.txt  Solid tumor thresholds for each tumor type
+HM_thresholds_m1313_g17061.txt Hematologic maligancy thresholds for each tumor type

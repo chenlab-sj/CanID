@@ -20,6 +20,7 @@ if (params.modeltype == 'ST'){
     globalCanIDScalar  = "${params.basedir}/models/ST_train_CanID_pca80_scaler.sav"
     globalCanIDModel   = "${params.basedir}/models/ST_train_CanID_pca80_model.sav"
     globalClassCode    = "${params.basedir}/input_files/CanID_ST_class_code.txt"
+    globalThreshold    = "${params.basedir}/input_files/ST_thresholds_m456_g17061.txt"
 } else if (params.modeltype == 'HM'){
     globalGeneList     = "${params.basedir}/input_files/CanID_geneList.txt"
     globalQNModel      = "${params.basedir}/models/HM_QN_trained_model.txt"
@@ -30,6 +31,7 @@ if (params.modeltype == 'ST'){
     globalCanIDScalar  = "${params.basedir}/models/HM_train_CanID_pca85_scaler.sav"
     globalCanIDModel   = "${params.basedir}/models/HM_train_CanID_pca85_model.sav"
     globalClassCode    = "${params.basedir}/input_files/CanID_HM_class_code.txt"
+    globalThreshold    = "${params.basedir}/input_files/HM_thresholds_m1313_g17061.txt"
 } else {
     globalGeneList     = params.genelist ?: 'missing'
     globalQNModel      = params.qnmodel ?: 'missing'
@@ -40,6 +42,7 @@ if (params.modeltype == 'ST'){
     globalCanIDScalar  = params.canidscalar ?: 'missing'
     globalCanIDModel   = params.canidmodel ?: 'missing'
     globalClassCode    = params.classcode ?: 'missing'
+    globalThreshold    = params.threshold ?: 'missing'
 }
 
 if (params.fsva_method == 'fast'){
@@ -63,7 +66,7 @@ process step0_genefilter {
 
    script:
    """
-   python ${basedir}/scripts/step0_raw_count_prep/step0_filter_genes.py ${inputfile} ${genelist} ${prefix}_filtered.txt
+   python3.10 ${basedir}/scripts/step0_raw_count_prep/step0_filter_genes.py ${inputfile} ${genelist} ${prefix}_filtered.txt
    """
 }
 
@@ -82,7 +85,7 @@ process step1_applyQN {
 
    script:
    """
-   python ${basedir}/scripts/step1_quantile_norm/apply_QN.py ${inputfile} ${qnmodel} ${prefix}_qn.txt
+   python3.10 ${basedir}/scripts/step1_quantile_norm/apply_QN.py ${inputfile} ${qnmodel} ${prefix}_qn.txt
    """
 }
 
@@ -127,7 +130,7 @@ process step3_applyPCA {
 
    script:
    """
-   python ${basedir}/scripts/step3_feature_selection/pca_transform.py ${inputfile} ${pcamodel} ${prefix}_pca
+   python3.10 ${basedir}/scripts/step3_feature_selection/pca_transform.py ${inputfile} ${pcamodel} ${prefix}_pca
    """
 }
 
@@ -148,7 +151,7 @@ process step4_applyCanID {
 
    script:
    """
-   python ${basedir}/scripts/step5_class_prediction/run_model.py ${inputfile} id_by_gene ${model} ${scalar} ${classcode}  ${prefix}_CanID_prediction
+   python3.10 ${basedir}/scripts/step5_class_prediction/run_model.py ${inputfile} id_by_gene ${model} ${scalar} ${classcode}  ${prefix}_CanID_prediction
    """
 }
 
@@ -159,6 +162,7 @@ process step5_filterCanID {
    input:
       val prefix
       val basedir
+     path threshold_file
      path inputfile
 
    output:
@@ -166,7 +170,7 @@ process step5_filterCanID {
 
    script:
    """
-   python ${basedir}/scripts/step6_summarize_result/summarize_result.py ${inputfile} ${prefix}_CanID_Final_prediction
+   python3.10 ${basedir}/scripts/step6_summarize_result/summarize_result.py ${inputfile} ${threshold_file} ${prefix}_CanID_Final_prediction
    """
 }
 
@@ -185,6 +189,7 @@ workflow {
     canidmodel_ch     = Channel.of(globalCanIDModel)
     classcode_ch      = Channel.of(globalClassCode)
     fsvascript_ch     = Channel.of(globalFSVAscript)
+    threshold_ch      = Channel.of(globalThreshold)
 
     // run step0
     step0_genefilter(inputfile_ch, prefix_ch, basedir_ch, genelistfile_ch)
@@ -202,6 +207,6 @@ workflow {
     step4_applyCanID(prefix_ch, basedir_ch, step3_applyPCA.out, canidmodel_ch, canidscalar_ch, classcode_ch)
 
     // run step5 filter CanID
-    step5_filterCanID(prefix_ch, basedir_ch, step4_applyCanID.out)
+    step5_filterCanID(prefix_ch, basedir_ch, threshold_ch, step4_applyCanID.out)
 
 }
