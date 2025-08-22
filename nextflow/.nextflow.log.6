@@ -1,0 +1,84 @@
+Jan-29 13:39:55.095 [main] DEBUG nextflow.cli.Launcher - $> nextflow run make_prediction_final.nf --inputfile /research_jude/rgs01_jude/groups/chen1grp/projects/Liver_FFPE/chen1grp/CanID_classification_v1/stjude_application/input_files/ZERO_ST_testset.txt --fsva_method fast --prefix ZERO_HM --basedir /home/dputnam/chenlab_home/CanID_classification_v1/public_application --modeltype HM -resume
+Jan-29 13:39:55.414 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 23.04.1
+Jan-29 13:39:55.451 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/dputnam/.nextflow/plugins; core-plugins: nf-amazon@1.16.2,nf-azure@1.0.1,nf-codecommit@0.1.4,nf-console@1.0.5,nf-ga4gh@1.0.5,nf-google@1.7.3,nf-tower@1.5.12,nf-wave@0.8.2
+Jan-29 13:39:55.474 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jan-29 13:39:55.474 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jan-29 13:39:55.477 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Jan-29 13:39:55.499 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jan-29 13:39:55.715 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+Jan-29 13:39:55.741 [main] INFO  nextflow.cli.CmdRun - Launching `make_prediction_final.nf` [mighty_bhaskara] DSL2 - revision: 52fe86b9bb
+Jan-29 13:39:55.742 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jan-29 13:39:55.742 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Jan-29 13:39:55.758 [main] DEBUG nextflow.secret.LocalSecretsProvider - Secrets store: /home/dputnam/.nextflow/secrets/store.json
+Jan-29 13:39:55.765 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@68e62ca4] - activable => nextflow.secret.LocalSecretsProvider@68e62ca4
+Jan-29 13:39:55.883 [main] DEBUG nextflow.Session - Session UUID: 9a516466-4055-4d8a-b6c0-7ac8482d0d20
+Jan-29 13:39:55.884 [main] DEBUG nextflow.Session - Run name: mighty_bhaskara
+Jan-29 13:39:55.886 [main] DEBUG nextflow.Session - Executor pool size: 2
+Jan-29 13:39:55.912 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jan-29 13:39:55.967 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 23.04.1 build 5866
+  Created: 15-04-2023 06:51 UTC (01:51 CDT)
+  System: Linux 4.18.0-477.58.1.el8_8.x86_64
+  Runtime: Groovy 3.0.16 on OpenJDK 64-Bit Server VM 20.0.2+9-78
+  Encoding: UTF-8 (UTF-8)
+  Process: 3476788@noderome209 [10.220.17.109]
+  CPUs: 1 - Mem: 1003.4 GB (664.2 GB) - Swap: 16 GB (16 GB)
+Jan-29 13:39:56.153 [main] DEBUG nextflow.Session - Work-dir: /research_jude/rgs01_jude/groups/chen1grp/projects/Liver_FFPE/chen1grp/CanID_classification_v1/public_application/nextflow/work [gpfs]
+Jan-29 13:39:56.153 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /research_jude/rgs01_jude/groups/chen1grp/projects/Liver_FFPE/chen1grp/CanID_classification_v1/public_application/nextflow/bin
+Jan-29 13:39:56.186 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jan-29 13:39:56.198 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jan-29 13:39:56.253 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jan-29 13:39:56.277 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 2; maxThreads: 1000
+Jan-29 13:39:56.472 [main] DEBUG nextflow.Session - Session start
+Jan-29 13:39:58.563 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jan-29 13:39:58.588 [main] INFO  nextflow.script.BaseScript - FSVA Method (after initialization): fast
+Jan-29 13:39:58.808 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jan-29 13:39:58.808 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jan-29 13:39:58.825 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jan-29 13:39:58.831 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=1; memory=1003.4 GB; capacity=1; pollInterval=100ms; dumpInterval=5m
+Jan-29 13:39:59.017 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jan-29 13:39:59.017 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jan-29 13:39:59.043 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jan-29 13:39:59.043 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jan-29 13:39:59.047 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jan-29 13:39:59.047 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jan-29 13:39:59.050 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jan-29 13:39:59.050 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jan-29 13:39:59.053 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jan-29 13:39:59.053 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jan-29 13:39:59.070 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: step5_filterCanID, step0_genefilter, step3_applyPCA, step1_applyQN, step2_applyBN, step4_applyCanID
+Jan-29 13:39:59.071 [main] DEBUG nextflow.Session - Igniting dataflow network (19)
+Jan-29 13:39:59.071 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > step0_genefilter
+Jan-29 13:39:59.085 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > step1_applyQN
+Jan-29 13:39:59.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > step2_applyBN
+Jan-29 13:39:59.118 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > step3_applyPCA
+Jan-29 13:39:59.118 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > step4_applyCanID
+Jan-29 13:39:59.120 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > step5_filterCanID
+Jan-29 13:39:59.120 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jan-29 13:39:59.120 [main] DEBUG nextflow.Session - Session await
+Jan-29 13:39:59.443 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jan-29 13:39:59.446 [Task submitter] INFO  nextflow.Session - [b2/742961] Submitted process > step0_genefilter (1)
+Jan-29 13:40:03.726 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: step0_genefilter (1); status: COMPLETED; exit: 0; error: -; workDir: /research_jude/rgs01_jude/groups/chen1grp/projects/Liver_FFPE/chen1grp/CanID_classification_v1/public_application/nextflow/work/b2/74296168566ebd611217129f38eb4a]
+Jan-29 13:40:03.787 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jan-29 13:40:03.788 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jan-29 13:40:03.823 [Task submitter] INFO  nextflow.Session - [37/5d11db] Submitted process > step1_applyQN (1)
+Jan-29 13:40:13.008 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: step1_applyQN (1); status: COMPLETED; exit: 0; error: -; workDir: /research_jude/rgs01_jude/groups/chen1grp/projects/Liver_FFPE/chen1grp/CanID_classification_v1/public_application/nextflow/work/37/5d11db80407e46437f639401f25aac]
+Jan-29 13:40:13.074 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jan-29 13:40:13.074 [Task submitter] INFO  nextflow.Session - [e8/f8d3e9] Submitted process > step2_applyBN (1)
+Jan-29 13:42:21.811 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: step2_applyBN (1); status: COMPLETED; exit: 0; error: -; workDir: /research_jude/rgs01_jude/groups/chen1grp/projects/Liver_FFPE/chen1grp/CanID_classification_v1/public_application/nextflow/work/e8/f8d3e949cf75a6f0d581b2188a9fa1]
+Jan-29 13:42:21.879 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jan-29 13:42:21.879 [Task submitter] INFO  nextflow.Session - [fb/6bad25] Submitted process > step3_applyPCA (1)
+Jan-29 13:42:37.666 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: step3_applyPCA (1); status: COMPLETED; exit: 0; error: -; workDir: /research_jude/rgs01_jude/groups/chen1grp/projects/Liver_FFPE/chen1grp/CanID_classification_v1/public_application/nextflow/work/fb/6bad2519f5371775442dee812aa701]
+Jan-29 13:42:37.706 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jan-29 13:42:37.706 [Task submitter] INFO  nextflow.Session - [67/5cd4e7] Submitted process > step4_applyCanID (1)
+Jan-29 13:42:55.612 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: step4_applyCanID (1); status: COMPLETED; exit: 0; error: -; workDir: /research_jude/rgs01_jude/groups/chen1grp/projects/Liver_FFPE/chen1grp/CanID_classification_v1/public_application/nextflow/work/67/5cd4e76c252569d9eeecde6c144ae6]
+Jan-29 13:42:55.654 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jan-29 13:42:55.655 [Task submitter] INFO  nextflow.Session - [02/9160a3] Submitted process > step5_filterCanID (1)
+Jan-29 13:42:57.000 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: step5_filterCanID (1); status: COMPLETED; exit: 0; error: -; workDir: /research_jude/rgs01_jude/groups/chen1grp/projects/Liver_FFPE/chen1grp/CanID_classification_v1/public_application/nextflow/work/02/9160a380bdc37615cb3bc7398a1f9e]
+Jan-29 13:42:57.025 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jan-29 13:42:57.100 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jan-29 13:42:57.104 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Jan-29 13:42:57.109 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=6; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=2m 57s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
+Jan-29 13:42:57.346 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jan-29 13:42:57.494 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jan-29 13:42:57.494 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

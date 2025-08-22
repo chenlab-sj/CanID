@@ -39,6 +39,7 @@ def main(LineArgs):
         print('missing genes:', genes_missing)
     else:
         final_df = df.loc[basis_gene_list].copy()
+        final_df.index.name = ""
         final_df.to_csv(outfile, header=True, index=True, sep="\t")
 
 if __name__ == '__main__':

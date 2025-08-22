@@ -1,1 +1,1 @@
-step1: quantile normalization
+Step1: Quantile Normalization

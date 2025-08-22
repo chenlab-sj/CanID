@@ -3,28 +3,16 @@
 ##########################################
 # unpack the intermediate files
 ##########################################
-mkdir -p ./intermediate_files/build
 
 # HM Expression File
-for file in ./intermediate_files/HM_store/HM*.tar.gz; do
-    tar -xvzf "$file" -C ./intermediate_files/HM_store/build
-done
-
-cat ./intermediate_files/HM_store/build/HM_part_{00..17} > ./intermediate_files/HM_train_expression.txt
-rm ./intermediate_files/HM_store/build/HM_part_??
-rmdir ./intermediate_files/HM_store/build
+cat ./intermediate_files/HM_store/HM_train.tar.gz.part-* | tar -xzf - -C ./intermediate_files 
 
 # ST Expression File
-for file in ./intermediate_files/ST_store/ST*.tar.gz; do
-    tar -xvzf "$file" -C ./intermediate_files/ST_store/build
-done
+cat ./intermediate_files/ST_store/ST_train.tar.gz.part-* | tar -xzf - -C ./intermediate_files 
 
-cat ./intermediate_files/ST_store/build/ST_part_{00..17} > ./intermediate_files/ST_train_expression.txt
-rm ./intermediate_files/ST_store/build/ST_part_??
-rmdir ./intermediate_files/ST_store/build
+# HM PCA Model
+cat ./models/HM_store/pca_model/HM_train_pca85.pickle.tar.gz.part-* | tar -xzf - -C ./models
 
-##########################################
-# unpack the HM pca model
-##########################################
+# HM CanID Model
+cat ./models/HM_store/CanID_model/HM_train_CanID_pca85_model.tar.gz.part-* | tar -xzf - -C ./models
 
-cat ./models/HM_store/HM_pca85_part_{00..04} > ./models/HM_train_pca85.pickle

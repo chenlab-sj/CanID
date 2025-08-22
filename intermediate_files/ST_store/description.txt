@@ -1,1 +1,1 @@
-This direcory contains the split/compressed ST files
+This directory contains the split ST files

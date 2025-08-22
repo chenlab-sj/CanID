@@ -1,1 +1,1 @@
-step3: PCA Feature Reduction
+Step3: PCA Feature Reduction

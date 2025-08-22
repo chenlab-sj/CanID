@@ -1,1 +1,1 @@
-This Folder contains the split and compressed HM files
+This directory contains the split HM files

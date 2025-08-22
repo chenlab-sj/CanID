@@ -16,9 +16,9 @@ if (params.modeltype == 'ST'){
     globalBNExpression = "${params.basedir}/intermediate_files/ST_train_expression.txt"
     globalBNPheno      = "${params.basedir}/intermediate_files/ST_train_masked_pheno.txt"
     globalBNModel      = "${params.basedir}/models/ST_SVA_Model_sva_model.Rdata"
-    globalPCAModel     = "${params.basedir}/models/ST_train_pca70.pickle"
-    globalCanIDScalar  = "${params.basedir}/models/ST_train_CanID_pca70_scaler.sav"
-    globalCanIDModel   = "${params.basedir}/models/ST_train_CanID_pca70_model.sav"
+    globalPCAModel     = "${params.basedir}/models/ST_train_pca80.pickle"
+    globalCanIDScalar  = "${params.basedir}/models/ST_train_CanID_pca80_scaler.sav"
+    globalCanIDModel   = "${params.basedir}/models/ST_train_CanID_pca80_model.sav"
     globalClassCode    = "${params.basedir}/input_files/CanID_ST_class_code.txt"
 } else if (params.modeltype == 'HM'){
     globalGeneList     = "${params.basedir}/input_files/CanID_geneList.txt"

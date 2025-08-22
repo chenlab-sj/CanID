@@ -55,7 +55,7 @@ def main(LineArgs):
     pheno_df['batch'] = batch
     pheno_df['cancer'] = pheno_df['outcome']
 
-    test_df = train_df[['ST_382']].copy()
+    test_df = train_df.iloc[:, [0]].copy()
     test_df.columns = ['test1']
     
     # Write Files

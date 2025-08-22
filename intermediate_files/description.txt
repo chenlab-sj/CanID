@@ -1,5 +1,5 @@
 Description of files
-ST_part_??.tar.gz   compressed section of training solid tumor quantile normalized expression matrix
-HM_part_??.tar.gz   compressed section of training hematologic malignancy quantile normalized expression matrix
+ST_train.tar.gz.part_??     split section of training solid tumor quantile normalized expression matrix
+HM_train.tar.gz.part_??     split section of training hematologic malignancy quantile normalized expression matrix
 ST_train_masked_pheno.txt   Solid tumor phenotype file used in batch correction
 HM_train_masked_pheno.txt   Hematologic malignacy phenotype file used in batch correction

@@ -1,1 +1,14 @@
-This describes how to run nextflow pipeline
+This describes how to run the nextlflow pipeine
+
+# Train a custom model (from the nextflow folder)
+set -e
+nextflow train_model.nf --inputfile ['raw_counts_file'] --prefix ['file_prefix'] --basedir ['path_to_repository'] --classcode ['class_code_file'] --labels ['label_file'] --variance ['variance_explained'] -resume
+
+
+# Make a prediction using the SJ model
+set -e
+nextflow make_prediction.nf --inputfile ['raw_counts_file'] --fsva_method ['exact' or 'fast'] --prefix ['file_prefix'] --basedir ['path_to_repository'] --modeltype ['ST' or 'HM'] -resume
+
+# Make a prediction using the custom model
+set -e
+nextflow make_prediction.nf --inputfile ['raw_counts_file'] --fsva_method ['exact' or 'fast'] --prefix ['file_prefix'] --basedir ['path_to_repository'] --modeltype ['CUSTOM'] --genelist ['genelist'] --qnmodel ['qn_model'] --bnexpression ['bn_expression_file'] --bnpheno ['bn_pheno_file'] --bnmodel ['bn_model_file'] --pcamodel ['pca_model_file'] --canidscaler ['canid_scalar_file'] -- canidmodel ['canid_model_file'] classcode ['class_code_file'] -resume
